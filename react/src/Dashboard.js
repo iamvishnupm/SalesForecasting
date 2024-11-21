@@ -1,4 +1,5 @@
 import axios from './api/axios';
+import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronRight, Menu, Layers } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -341,9 +342,9 @@ const Dashboard = () => {
                 size={20}
               />
             </div>
-            <div className="cursor-pointer hover:bg-gray-700 p-2 rounded">📈 Demand</div>
-            <div className="cursor-pointer hover:bg-gray-700 p-2 rounded">📦 Inventory</div>
-            <div className="cursor-pointer hover:bg-gray-700 p-2 rounded">📊 Dashboard</div>
+            <div className="cursor-pointer hover:bg-gray-700 p-2 rounded"><Link to="/demand">📈 Demand</Link></div>
+            <div className="cursor-pointer hover:bg-gray-700 p-2 rounded"><Link to="/inventory">📦 Inventory</Link></div>
+            <div className="cursor-pointer hover:bg-gray-700 p-2 rounded"><Link to="/">📊 Dashboard</Link></div>
           </div>
         </div>
       )}
