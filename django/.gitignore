@@ -1,0 +1,28 @@
+# Compiled files
+__pycache__/
+*.pyc
+*.pyo
+
+# Database
+db.sqlite3
+
+# Virtual environment
+venv/
+.env/
+env/
+
+# Static and media files
+staticfiles/
+media/
+
+# Local settings
+settings_local.py
+
+# IDE/editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules
+node_modules/
