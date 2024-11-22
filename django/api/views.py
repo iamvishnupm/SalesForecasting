@@ -14,6 +14,10 @@ from rest_framework.decorators import action
 logger = logging.getLogger(__name__)
 
 
+def home(request):
+    return render(request, "index.html")
+
+
 class SalesDataViewSet(viewsets.ModelViewSet):
     queryset = DailySales.objects.all()
     serializer_class = SalesSummarySerializer
@@ -61,11 +65,11 @@ class dataList(APIView):
     def get(self, request):
         data_type = request.query_params.get("type", "category")
         if data_type == "category":
-            data = SalesData.objects.values_list("Category", flat=True).distinct()
+            data = DailySales.objects.values_list("Category", flat=True).distinct()
             response_key = "categories"
         elif data_type == "year":
             data = (
-                SalesData.objects.annotate(year=ExtractYear("Date"))
+                DailySales.objects.annotate(year=ExtractYear("Date"))
                 .values_list("year", flat=True)
                 .distinct()
             )

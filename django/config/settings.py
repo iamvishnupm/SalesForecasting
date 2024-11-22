@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-54@+pn9!kn3^5sq(@&#pi++jhp4t3qb9q_*=!ey4z6ku#k3bwo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -52,8 +52,12 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React frontend URL
+    "http://localhost:3000",  # Local development
+    "http://127.0.0.1:3000",  # Local React development
+    # "http://<YOUR_PUBLIC_IP>",  # Public React URL
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 LOGGING = {
     "version": 1,
@@ -86,7 +90,10 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [
+            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "react_build"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -110,7 +117,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "sales_forecasting",
         "USER": "sales",
-        "PASSWORD": "password",
+        "PASSWORD": "00951413",
         "HOST": "localhost",
         "PORT": 3306,
     }
@@ -152,8 +159,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
-# STATIC_ROOT = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static/"),
+    os.path.join(BASE_DIR, "react_build/static/"),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, "collected_static/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

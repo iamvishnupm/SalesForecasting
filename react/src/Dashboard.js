@@ -184,7 +184,7 @@ const Dashboard = () => {
   const [selectedYear, setSelectedYear] = useState(2021);
   const [selectedMonth, setSelectedMonth] = useState(1);
   const [tableData, setTableData] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState('electronics');
   const [categories, setCategories] = useState([]);
   const [expandedCategories, setExpandedCategories] = useState({}); // Only declare this once
   const [error, setError] = useState(null);
@@ -197,7 +197,6 @@ const Dashboard = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get('/data/', {
-          baseURL: 'http://127.0.0.1:8000/api',
           params: { type: 'category' },
         });
         setCategories(response.data.categories || []);
@@ -215,7 +214,6 @@ const Dashboard = () => {
     const fetchYears = async () => {
       try {
         const response = await axios.get('/data/', {
-          baseURL: 'http://127.0.0.1:8000/api',
           params: { type: 'year' },
         });
         setYearOptions(response.data.years || []); // Assuming response includes 'years'
@@ -253,7 +251,6 @@ const Dashboard = () => {
     const fetchSalesData = async () => {
       try {
         const response = await axios.get('/salesdata/filtered_data/', {
-          baseURL: 'http://127.0.0.1:8000/api',
           params: {
             category: selectedCategory,
             year: selectedYear,
