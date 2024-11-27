@@ -9,5 +9,5 @@ router.register(r"prediction", PredictionViewSet, basename="prediction")
 urlpatterns = [
     path("api/", include(router.urls)),
     path("api/data/", dataList.as_view(), name="data_list"),
-    # path("", home, name="home"),
+    path("", home, name="home"),
 ]
